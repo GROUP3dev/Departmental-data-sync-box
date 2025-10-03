@@ -21,7 +21,7 @@ The system automates data updates, ensuring accuracy and consistency across all 
 
 ## ⚙️ Tech Stack
 - **Frontend:** Java Swing (desktop-based UI)  
-- **Backend:** Oracle Database (19c+)  
+- **Backend:** Oracle Database (21c+)  
 - **Middleware:** JDBC, LAN Communication (Sockets/RMI)  
 - **Cloud Integration:** Google Drive API for backup & sync  
 
