@@ -36,7 +36,7 @@ Departmental-Data-Sync-Box/
 │   ├── ojdbc11.jar              # Oracle JDBC Driver
 │   └── other-libs.jar           # Other required libs
 │
-├── src/                         # Source code
+├── src/                        
 │   ├── main/                    # Main source code
 │   │   ├── model/               # Data models (POJOs)
 │   │   │   ├── Department.java
