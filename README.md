@@ -26,72 +26,11 @@ The system automates data updates, ensuring accuracy and consistency across all 
 - **Cloud Integration:** Google Drive API for backup & sync  
 
 
-## 📂 Repository Structure
-
-Departmental-Data-Sync-Box/
-│
-├── docs/                        # Documentation files
-│
-├── lib/                         # External libraries (JAR files)
-│   ├── ojdbc11.jar              # Oracle JDBC Driver
-│   └── other-libs.jar           # Other required libs
-│
-├── src/                        
-│   ├── main/                    # Main source code
-│   │   ├── model/               # Data models (POJOs)
-│   │   │   ├── Department.java
-│   │   │   ├── Staff.java
-│   │   │   ├── SyncLog.java
-│   │   │   └── User.java
-│   │   │
-│   │   ├── dao/                 # Data Access Objects (DB handling)
-│   │   │   ├── DepartmentDAO.java
-│   │   │   ├── StaffDAO.java
-│   │   │   ├── SyncLogDAO.java
-│   │   │   └── UserDAO.java
-│   │   │
-│   │   ├── db/                  # Database utility classes
-│   │   │   ├── DBConnection.java
-│   │   │   └── DBInitializer.java
-│   │   │
-│   │   ├── sync/                # Sync engine (LAN + Cloud)
-│   │   │   ├── SyncManager.java
-│   │   │   ├── LanSync.java
-│   │   │   └── CloudSync.java
-│   │   │
-│   │   ├── ui/                  # User Interface (Java Swing)
-│   │   │   ├── LoginUI.java
-│   │   │   ├── AdminDashboard.java
-│   │   │   ├── StaffDashboard.java
-│   │   │   └── SyncStatusUI.java
-│   │   │
-│   │   └── Main.java            # Application entry point
-│   │
-│   └── test/                    # Test classes (JUnit)
-│       ├── DepartmentDAOTest.java
-│       ├── SyncManagerTest.java
-│       └── UserDAOTest.java
-│
-├── database/                    # SQL scripts
-│   ├── schema.sql               # Create tables
-│   ├── seed.sql                 # Sample/test data
-│   └── procedures.sql           # Stored procedures & triggers
-│
-├── config/                      # Config files
-│   ├── db.properties            # DB connection settings
-│   └── sync.properties          # Sync configurations
-│
-├── build/                       # Compiled .class files (generated after compilation)
-│
-├── dist/                        # Packaged JAR files
-│   └── DepartmentalDataSyncBox.jar
-│
-├── .gitignore                   # Git ignore rules
 
 
 ## 📌 Commit Message Guidelines
 
-We follow the **Conventional Commits** standard to keep our commit history clean and meaningful.  
+We follow the **Conventional Commits** standard to keep our commit history clean and meaningful. us team  
 Each commit message should start with a **type** that describes the purpose of the change.
 
 ### ✅ Commit Types
@@ -120,8 +59,7 @@ Each commit message should start with a **type** that describes the purpose of t
 - **perf:** → Performance improvements  
   _Example:_ `perf(sync): optimize batch data merge speed`
 
-- **ci:** → Continuous integration related  
-  _Example:_ `ci: add GitHub Actions workflow for build`
+
 
 
 
