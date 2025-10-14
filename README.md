@@ -26,5 +26,40 @@ The system automates data updates, ensuring accuracy and consistency across all 
 - **Cloud Integration:** Google Drive API for backup & sync  
 
 
-## 📂 Repository Structure
+
+
+## 📌 Commit Message Guidelines
+
+We follow the **Conventional Commits** standard to keep our commit history clean and meaningful. us team  
+Each commit message should start with a **type** that describes the purpose of the change.
+
+### ✅ Commit Types
+
+- **feat:** → A new feature  
+  _Example:_ `feat(ui): add login screen with validation`
+
+- **fix:** → A bug fix  
+  _Example:_ `fix(sync): resolve timestamp mismatch issue`
+
+- **docs:** → Documentation changes (README, comments, etc.)  
+  _Example:_ `docs: update setup instructions in README`
+
+- **style:** → Code style/formatting (no logic changes)  
+  _Example:_ `style(ui): improve table alignment in dashboard`
+
+- **refactor:** → Code changes that neither fix a bug nor add a feature  
+  _Example:_ `refactor(jdbc): simplify query execution method`
+
+- **test:** → Adding or modifying tests  
+  _Example:_ `test(sync): add unit tests for merge conflicts`
+
+- **chore:** → Maintenance tasks (build scripts, configs, dependencies, etc.)  
+  _Example:_ `chore: configure Maven dependencies`
+
+- **perf:** → Performance improvements  
+  _Example:_ `perf(sync): optimize batch data merge speed`
+
+
+
+
 
