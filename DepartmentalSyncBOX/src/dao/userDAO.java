@@ -1,63 +1,37 @@
 package dao;
 
-import db.DBConnection;
 import model.User;
-
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class userDAO {
+public class UserDAO {
 
+    private List<User> users = new ArrayList<>();
 
-    public void addUser(User user) {
-        String sql = "INSERT INTO users (id, username, password, role) VALUES (?, ?, ?, ?)";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, user.getId());
-            stmt.setString(2, user.getUsername());
-            stmt.setString(3, user.getPassword());
-            stmt.setString(4, user.getRole());
-            stmt.executeUpdate();
-            System.out.println("User added: " + user);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public UserDAO() {
+        users.add(new User(1, "admin", "1234", "admin"));
+        users.add(new User(2, "staff1", "1234", "staff"));
+        users.add(new User(3, "user1", "1234", "user"));
     }
 
-    public void updateUser(User user) {
-        String sql = "UPDATE users SET username=?, password=?, role=? WHERE id=?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, user.getUsername());
-            stmt.setString(2, user.getPassword());
-            stmt.setString(3, user.getRole());
-            stmt.setInt(4, user.getId());
-            stmt.executeUpdate();
-            System.out.println("User updated: " + user);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
-        String sql = "SELECT * FROM users";
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                User u = new User(
-                        rs.getInt("id"),
-                        rs.getString("username"),
-                        rs.getString("password"),
-                        rs.getString("role")
-                );
-                users.add(u);
+    public User login(String username, String password) {
+        for (User u : users) {
+            if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
+                return u;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-        return users;
+        return null;
     }
+
+    public List<User> getAllUsers() { return users; }
+    public void addUser(User u) { users.add(u); }
+    public void updateUser(User u) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId() == u.getId()) {
+                users.set(i, u);
+                return;
+            }
+        }
+    }
+    public void deleteUser(int id) { users.removeIf(u -> u.getId() == id); }
 }
