@@ -3,13 +3,26 @@ package db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
+import java.io.InputStream;
 
 public class DBConnection {
-    private static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
-    private static final String USER = "your_username";
-    private static final String PASSWORD = "your_password";
+    private static Connection connection;
 
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+    public static Connection getConnection() {
+        if (connection == null) {
+            try (InputStream input = DBConnection.class.getResourceAsStream("/config/db.properties")) {
+                Properties props = new Properties();
+                props.load(input);
+                String url = props.getProperty("db.url");
+                String user = props.getProperty("db.user");
+                String password = props.getProperty("db.password");
+
+                connection = DriverManager.getConnection(url, user, password);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return connection;
     }
 }

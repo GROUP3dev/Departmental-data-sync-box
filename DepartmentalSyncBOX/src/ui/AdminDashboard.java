@@ -1,15 +1,14 @@
 package ui;
 
-public class AdminDashboard {
-}
 
-import main.dao.DepartmentDAO;
-import main.model.Department;
+import dao.DepartmentDAO;
+import model.Department;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
+import model.User;
 
 public class AdminDashboard extends JFrame {
 
@@ -21,7 +20,7 @@ public class AdminDashboard extends JFrame {
     private JTextField txtName = new JTextField(10);
     private JTextField txtLocation = new JTextField(10);
 
-    public AdminDashboard() {
+    public AdminDashboard(User user) {
         setTitle("Departmental Data Sync Box - Admin Dashboard");
         setSize(600, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -75,6 +74,15 @@ public class AdminDashboard extends JFrame {
         });
 
         btnRefresh.addActionListener(e -> refreshTable());
+
+        setTitle("Admin Dashboard - " + user.getUsername());
+        setSize(400, 300);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        add(new JLabel("Welcome Admin: " + user.getUsername(), SwingConstants.CENTER));
+
+
+
     }
 
     private void refreshTable() {
@@ -84,4 +92,5 @@ public class AdminDashboard extends JFrame {
             model.addRow(new Object[]{d.getId(), d.getName(), d.getLocation()});
         }
     }
+
 }
