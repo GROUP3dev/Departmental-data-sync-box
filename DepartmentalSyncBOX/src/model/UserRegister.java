@@ -67,7 +67,7 @@ public class UserRegister {
 
     // For testing registration directly in this class
     public static void main(String[] args) {
-        // ✅ Example: Register a new admin user
+        //  Example: Register a new admin user
         boolean result = registerUser(
                 "admin1",
                 "admin123",
