@@ -5,6 +5,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import db.DBConnection;
 
 
 
@@ -51,8 +52,8 @@ public class AuditLog {
     // CREATE
     public boolean insertAuditLog() {
         String sql = "INSERT INTO AUDIT_LOG (USER_ID, RECORD_ID, ACTION, DESCRIPTION, TIMESTAMP) VALUES (?, ?, ?, ?, ?)";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement stmt =connection.prepareStatement(sql)) {
 
             stmt.setInt(1, userId);
             stmt.setInt(2, recordId);
@@ -72,8 +73,8 @@ public class AuditLog {
     public static List<AuditLog> getAllLogs() {
         List<AuditLog> logs = new ArrayList<>();
         String sql = "SELECT * FROM AUDIT_LOG ORDER BY TIMESTAMP DESC";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql);
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
@@ -121,8 +122,8 @@ public class AuditLog {
     // UPDATE
     public boolean updateAuditLog() {
         String sql = "UPDATE AUDIT_LOG SET ACTION = ?, DESCRIPTION = ? WHERE AUDIT_ID = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setString(1, action);
             stmt.setString(2, description);
@@ -139,8 +140,8 @@ public class AuditLog {
     // DELETE
     public static boolean deleteAuditLog(int auditId) {
         String sql = "DELETE FROM AUDIT_LOG WHERE AUDIT_ID = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setInt(1, auditId);
             stmt.executeUpdate();
@@ -157,5 +158,54 @@ public class AuditLog {
         AuditLog log = new AuditLog(userId, recordId, action, description);
         log.insertAuditLog();
     }
+
+
+    public static void main(String[] args) {
+
+        // 1️⃣ Insert a new audit log
+        AuditLog log = new AuditLog(1, 101, "UPDATE", "Updated HR record");
+        boolean inserted = log.insertAuditLog();
+        System.out.println("Insert audit log: " + (inserted ? "SUCCESS" : "FAILED"));
+
+        // 2️⃣ Fetch all logs
+        System.out.println("\nAll Audit Logs:");
+        List<AuditLog> logs = AuditLog.getAllLogs();
+        for (AuditLog l : logs) {
+            System.out.println(
+                    l.getAuditId() + " | UserID: " + l.getUserId() +
+                            " | RecordID: " + l.getRecordId() +
+                            " | Action: " + l.getAction() +
+                            " | Desc: " + l.getDescription() +
+                            " | Time: " + l.getTimestamp()
+            );
+        }
+
+        // 3️⃣ Fetch logs by userId = 1
+        System.out.println("\nLogs for UserID = 1:");
+        List<AuditLog> userLogs = AuditLog.getLogsByUser(1);
+        for (AuditLog l : userLogs) {
+            System.out.println(l.getAuditId() + " | Action: " + l.getAction() + " | Desc: " + l.getDescription());
+        }
+
+        // 4️⃣ Update first log description
+        if (!logs.isEmpty()) {
+            AuditLog firstLog = logs.get(0);
+            firstLog.setDescription("Corrected HR record details");
+            boolean updated = firstLog.updateAuditLog();
+            System.out.println("\nUpdate first log: " + (updated ? "SUCCESS" : "FAILED"));
+        }
+
+        // 5️⃣ Delete last log
+        if (!logs.isEmpty()) {
+            AuditLog lastLog = logs.get(logs.size() - 1);
+            boolean deleted = AuditLog.deleteAuditLog(lastLog.getAuditId());
+            System.out.println("Delete last log: " + (deleted ? "SUCCESS" : "FAILED"));
+        }
+
+        // 6️⃣ Log an action using the utility
+        AuditLog.logAction(1, 101, "DELETE", "Deleted an outdated HR record");
+        System.out.println("Logged an action using logAction utility.");
+    }
+
 }
 
