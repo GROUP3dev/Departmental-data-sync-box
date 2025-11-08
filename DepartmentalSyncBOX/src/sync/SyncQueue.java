@@ -1,6 +1,12 @@
-package model;
+package sync;
 
 import  java.sql.Timestamp;
+
+/**
+ * this  class for entity store get data sncy
+ *
+ *
+ */
 
 public class SyncQueue {
     private Integer syncId;
@@ -9,7 +15,7 @@ public class SyncQueue {
     private int targetDepartmentId;
     private String operation;
     private String payload ;
-    private Timestamp createAt;
+    private Timestamp createdAt;
     private boolean processed ;
     private Timestamp processedAt;
     private String errorMessage;
@@ -17,7 +23,7 @@ public class SyncQueue {
 
     //constructor getter and setter
 
-    public SyncQueue(){};
+    public SyncQueue(){}
 
     public SyncQueue(int recordId , int sourceDepartmentId , int targetDepartmentId , String operation ,String payload){
          this.recordId = recordId;
@@ -77,12 +83,12 @@ public class SyncQueue {
         this.payload = payload;
     }
 
-    public Timestamp getCreateAt() {
-        return createAt;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
     public void setCreateAt(Timestamp createAt) {
-        this.createAt = createAt;
+        this.createdAt = createAt;
     }
 
     public boolean isProcessed() {
