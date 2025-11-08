@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2025 at 08:40 PM
+-- Generation Time: Nov 08, 2025 at 10:56 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,6 +40,30 @@ CREATE TABLE `attachments` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `audit_log`
+--
+
+CREATE TABLE `audit_log` (
+  `AUDIT_ID` int(11) NOT NULL,
+  `USER_ID` int(11) NOT NULL,
+  `RECORD_ID` int(11) NOT NULL,
+  `ACTION` varchar(50) DEFAULT NULL,
+  `DESCRIPTION` varchar(255) DEFAULT NULL,
+  `TIMESTAMP` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `audit_log`
+--
+
+INSERT INTO `audit_log` (`AUDIT_ID`, `USER_ID`, `RECORD_ID`, `ACTION`, `DESCRIPTION`, `TIMESTAMP`) VALUES
+(13, 1, 101, 'UPDATE', 'Corrected HR record details', '2025-11-08 21:24:55'),
+(15, 1, 101, 'UPDATE', 'Corrected HR record details', '2025-11-08 21:26:44'),
+(16, 1, 101, 'DELETE', 'Deleted an outdated HR record', '2025-11-08 21:26:45');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `departments`
 --
 
@@ -50,6 +74,19 @@ CREATE TABLE `departments` (
   `location` varchar(255) DEFAULT NULL,
   `contact_email` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`department_id`, `dept_code`, `name`, `location`, `contact_email`) VALUES
+(1, 'ADMIN', 'Administration', 'Main Building', 'admin@institution.com'),
+(9, 'HR', 'Human Resources', 'Block A', 'hr@institution.com'),
+(10, 'FIN', 'Finance', 'Block B', 'finance@institution.com'),
+(11, 'REG', 'Registry', 'Records Office', 'registry@institution.com'),
+(12, 'ICT', 'Information & Communication Technology', 'ICT Center', 'ict@institution.com'),
+(13, 'ACAD', 'Academics', 'Academic Block', 'academics@institution.com'),
+(14, 'LIB', 'Library Services', 'Library Building', 'library@institution.com');
 
 -- --------------------------------------------------------
 
@@ -71,6 +108,13 @@ CREATE TABLE `records` (
   `row_version` int(11) DEFAULT 1,
   `is_deleted` tinyint(1) DEFAULT 0 CHECK (`is_deleted` in (0,1))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `records`
+--
+
+INSERT INTO `records` (`record_id`, `external_id`, `title`, `payload`, `owner_department_id`, `status`, `created_by`, `created_at`, `last_updated_by`, `last_updated_at`, `row_version`, `is_deleted`) VALUES
+(101, 'EXT101', 'Sample Record', 'Sample payload details', 1, 'ACTIVE', 1, '2025-11-08 21:23:09', 1, '2025-11-08 21:23:09', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -97,6 +141,17 @@ CREATE TABLE `roles` (
   `role_name` varchar(100) NOT NULL,
   `description` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`role_id`, `role_name`, `description`) VALUES
+(1, 'ADMIN', NULL),
+(7, 'STAFF', 'Departmental staff responsible for entering, updating, and managing departmental records.'),
+(8, 'DEPT_HEAD', 'Department head responsible for approving data, generating reports, and oversight.'),
+(9, 'STUDENT', 'End user (student) with read-only access to personal synchronized records.'),
+(10, 'SYSTEM', 'Automated system process used for synchronization and background operations.');
 
 -- --------------------------------------------------------
 
@@ -138,6 +193,14 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `password_hash`, `full_name`, `email`, `department_id`, `role_id`, `created_at`, `last_login_at`, `active_flag`) VALUES
+(1, 'admin', 'hashedpassword123', 'Admin User', 'admin@example.com', 1, 1, '2025-11-08 21:14:02', '2025-11-08 21:14:02', 1),
+(2, 'admin1', '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9', 'Admin1 User', 'admin@example1.com', 1, 1, '2025-11-08 21:46:51', NULL, 1);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -148,6 +211,14 @@ ALTER TABLE `attachments`
   ADD PRIMARY KEY (`attachment_id`),
   ADD KEY `record_id` (`record_id`),
   ADD KEY `uploaded_by` (`uploaded_by`);
+
+--
+-- Indexes for table `audit_log`
+--
+ALTER TABLE `audit_log`
+  ADD PRIMARY KEY (`AUDIT_ID`),
+  ADD KEY `USER_ID` (`USER_ID`),
+  ADD KEY `RECORD_ID` (`RECORD_ID`);
 
 --
 -- Indexes for table `departments`
@@ -210,22 +281,28 @@ ALTER TABLE `attachments`
   MODIFY `attachment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `audit_log`
+--
+ALTER TABLE `audit_log`
+  MODIFY `AUDIT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `records`
 --
 ALTER TABLE `records`
-  MODIFY `record_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `record_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `sync_queue`
@@ -237,7 +314,7 @@ ALTER TABLE `sync_queue`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -249,6 +326,13 @@ ALTER TABLE `users`
 ALTER TABLE `attachments`
   ADD CONSTRAINT `attachments_ibfk_1` FOREIGN KEY (`record_id`) REFERENCES `records` (`record_id`),
   ADD CONSTRAINT `attachments_ibfk_2` FOREIGN KEY (`uploaded_by`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `audit_log`
+--
+ALTER TABLE `audit_log`
+  ADD CONSTRAINT `audit_log_ibfk_1` FOREIGN KEY (`USER_ID`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `audit_log_ibfk_2` FOREIGN KEY (`RECORD_ID`) REFERENCES `records` (`record_id`);
 
 --
 -- Constraints for table `records`
