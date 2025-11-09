@@ -69,10 +69,10 @@ public class UserRegister {
     public static void main(String[] args) {
         //  Example: Register a new admin user
         boolean result = registerUser(
-                "josepha",
+                "mubane",
                 "admin123",
-                "JOSEPHA ",
-                "josepha@example.com",
+                "MUBANE ",
+                "mubane@example.com",
                 1,   // department_id
                 1    // role_id
         );
