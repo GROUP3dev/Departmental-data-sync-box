@@ -2,7 +2,7 @@ package model;
 
 import java.sql.Timestamp;
 
-public class Record {
+public class gitRecord {
 
     private int recordId;                  // record_id
     private String externalId;             // external_id
