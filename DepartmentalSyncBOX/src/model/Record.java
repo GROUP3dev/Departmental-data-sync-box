@@ -3,7 +3,7 @@ package model;
 import db.DBConnection;
 import java.sql.*;
 
-public class gitRecord {
+public class Record{
 
     private int recordId;
     private String externalId;
