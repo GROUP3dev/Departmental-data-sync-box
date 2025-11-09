@@ -1,6 +1,6 @@
 package model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class User {
     private int userId;
@@ -9,7 +9,11 @@ public class User {
     private String email;
     private int departmentId;
     private int roleId;
+    private Timestamp createdAt;
+    private Timestamp lastLoginAt;
+    private boolean activeFlag;
 
+    // Getters and Setters
     public int getUserId() {
         return userId;
     }
@@ -82,11 +86,6 @@ public class User {
         this.activeFlag = activeFlag;
     }
 
-    private Timestamp createdAt;
-    private Timestamp lastLoginAt;
-    private boolean activeFlag;
-
-
     @Override
     public String toString() {
         return "User{" +
@@ -96,7 +95,9 @@ public class User {
                 ", email='" + email + '\'' +
                 ", departmentId=" + departmentId +
                 ", roleId=" + roleId +
+                ", createdAt=" + createdAt +
+                ", lastLoginAt=" + lastLoginAt +
+                ", activeFlag=" + activeFlag +
                 '}';
     }
-
 }
