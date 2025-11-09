@@ -1,21 +1,22 @@
 package model;
 
-import java.sql.Timestamp;
+import db.DBConnection;
+import java.sql.*;
 
 public class Record {
 
-    private int recordId;                  // record_id
-    private String externalId;             // external_id
-    private String title;                  // title
-    private String payload;                // payload
-    private int ownerDepartmentId;         // owner_department_id
-    private String status;                 // status
-    private int createdBy;                 // created_by
-    private Timestamp createdAt;           // created_at
-    private Integer lastUpdatedBy;         // last_updated_by (nullable)
-    private Timestamp lastUpdatedAt;       // last_updated_at (nullable)
-    private Integer rowVersion;            // row_version (nullable)
-    private boolean isDeleted;             // is_deleted
+    private int recordId;
+    private String externalId;
+    private String title;
+    private String payload;
+    private int ownerDepartmentId;
+    private String status;
+    private int createdBy;
+    private Timestamp createdAt;
+    private Integer lastUpdatedBy;
+    private Timestamp lastUpdatedAt;
+    private Integer rowVersion;
+    private boolean isDeleted;
 
     // Default constructor
     public Record() {}
@@ -39,7 +40,7 @@ public class Record {
         this.isDeleted = isDeleted;
     }
 
-    // Getters and Setters
+    // ---------------- Getters & Setters ----------------
     public int getRecordId() { return recordId; }
     public void setRecordId(int recordId) { this.recordId = recordId; }
 
@@ -92,5 +93,107 @@ public class Record {
                 ", rowVersion=" + rowVersion +
                 ", isDeleted=" + isDeleted +
                 '}';
+    }
+
+    // ------------------ Database operations ------------------
+
+    // Add record
+    public boolean add() {
+        String sql = "INSERT INTO records (external_id, title, payload, owner_department_id, status, created_by, created_at, row_version, is_deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            stmt.setString(1, externalId);
+            stmt.setString(2, title);
+            stmt.setString(3, payload);
+            stmt.setInt(4, ownerDepartmentId);
+            stmt.setString(5, status);
+            stmt.setInt(6, createdBy);
+            stmt.setTimestamp(7, createdAt !=null ? createdAt : new Timestamp(System.currentTimeMillis()));
+            stmt.setInt(8, rowVersion != null ? rowVersion : 1);
+            stmt.setBoolean(9, isDeleted);
+
+            int affectedRows = stmt.executeUpdate();
+            if (affectedRows > 0) {
+                try (ResultSet rs = stmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        this.recordId = rs.getInt(1);
+                    }
+                }
+                return true;
+            }
+        } catch (SQLException e) {
+            System.err.println("Add record error: " + e.getMessage());
+        }
+        return false;
+    }
+
+    // Update record
+    public boolean update() {
+        String sql = "UPDATE records SET external_id=?, title=?, payload=?, owner_department_id=?, status=?, last_updated_by=?, last_updated_at=?, row_version=?, is_deleted=? WHERE record_id=?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, externalId);
+            stmt.setString(2, title);
+            stmt.setString(3, payload);
+            stmt.setInt(4, ownerDepartmentId);
+            stmt.setString(5, status);
+            stmt.setObject(6, lastUpdatedBy, Types.INTEGER);
+            stmt.setTimestamp(7, lastUpdatedAt != null ? lastUpdatedAt : new Timestamp(System.currentTimeMillis()));
+            stmt.setInt(8, rowVersion != null ? rowVersion : 1);
+            stmt.setBoolean(9, isDeleted);
+            stmt.setInt(10, recordId);
+
+            int rows = stmt.executeUpdate();
+            return rows > 0;
+        } catch (SQLException e) {
+            System.err.println("Update record error: " + e.getMessage());
+            return false;
+        }
+    }
+
+    // Delete record (soft delete)
+    public boolean delete() {
+        String sql = "UPDATE records SET is_deleted=1 WHERE record_id=?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, recordId);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Delete record error: " + e.getMessage());
+            return false;
+        }
+    }
+
+    // ------------------ Testing ------------------
+    public static void main(String[] args) {
+        // Create sample record
+        Record r = new Record();
+        r.setExternalId("EXT001");
+        r.setTitle("Sample Record");
+        r.setPayload("Sample payload");
+        r.setOwnerDepartmentId(1);
+        r.setStatus("Active");
+        r.setCreatedBy(100);
+        r.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+        r.setRowVersion(1);
+        r.setDeleted(false);
+
+        // Add record
+        if (r.add()) System.out.println("Added: " + r);
+
+        // Update record
+        r.setTitle("Updated Sample Record");
+        r.setLastUpdatedBy(101);
+        r.setLastUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        if (r.update()) System.out.println("Updated: " + r);
+
+        // Delete record
+        if (r.delete()) System.out.println("Deleted record ID: " + r.getRecordId());
+
+        // Close DB connection
+        DBConnection.closeConnection();
     }
 }
