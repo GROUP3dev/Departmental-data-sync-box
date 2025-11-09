@@ -5,50 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="687f47b0-0885-424f-97e8-b7560a0bc1ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/mysql-connector-j-9.5.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/dept_sync_db.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dao/StaffDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dao/SyncLogDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dao/UserDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/db/DBInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/AuditLog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Record.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/RecordVisibility.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/UserLogin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/UserRegister.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sync/SyncQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sync/SyncQueueDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/AdminDashboard1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/CreateAccount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/DepartmentHeadDashboard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/RegistryDashboard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/SignIn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/StudentUserDashboard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/UserDashboard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/UserDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DepartmentalSyncBOX.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DepartmentalSyncBOX.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/exampl.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/DepartmentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/DepartmentDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/SynLogDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/staffDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/userDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/DBConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/DBinitializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Staff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/SyncLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SyncLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sync/CloudSync.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sync/CloudSync.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sync/LanSync.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sync/LanSync.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sync/SyncManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sync/SyncManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/AdminDashboard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/LoginUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/StaffDashboard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/SyncStatusUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/RecordVisibility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/RecordVisibility.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,11 +37,19 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.AdminDashboard1.executor": "Run",
+    "Application.CreateAccount.executor": "Run",
+    "Application.DemoMain.executor": "Run",
     "Application.Main.executor": "Run",
+    "Application.MainDemo.executor": "Run",
+    "Application.RecordVisibility.executor": "Run",
+    "Application.RegistryDashboard.executor": "Run",
+    "Application.TestRecordVisibility.executor": "Run",
+    "Application.UserLogin.executor": "Run",
+    "Application.db.DemoMain.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Merging Fidella",
+    "git-widget-placeholder": "Fidella",
     "kotlin-language-version-configured": "true",
     "onboarding.tips.debug.path": "D:/GROUP3/Departmental-data-sync-box/DepartmentalSyncBOX/src/Main.java",
     "project.structure.last.edited": "Project",
@@ -89,13 +57,20 @@
     "project.structure.side.proportion": "0.0"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.AdminDashboard1">
-    <configuration name="AdminDashboard1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ui.AdminDashboard1" />
+  <component name="RunManager" selected="Application.TestRecordVisibility">
+    <configuration name="DemoMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="DemoMain" />
+      <module name="DepartmentalSyncBOX" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="demo.MainDemo" />
       <module name="DepartmentalSyncBOX" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ui.*" />
+          <option name="PATTERN" value="demo.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -103,17 +78,52 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+    <configuration name="RecordVisibility" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="model.RecordVisibility" />
       <module name="DepartmentalSyncBOX" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestRecordVisibility" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="db.TestRecordVisibility" />
+      <module name="DepartmentalSyncBOX" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="db.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="db.DemoMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="db.DemoMain" />
+      <module name="DepartmentalSyncBOX" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="db.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.AdminDashboard1" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.TestRecordVisibility" />
+        <item itemvalue="Application.db.DemoMain" />
+        <item itemvalue="Application.MainDemo" />
+        <item itemvalue="Application.RecordVisibility" />
+        <item itemvalue="Application.DemoMain" />
       </list>
     </recent_temporary>
   </component>
