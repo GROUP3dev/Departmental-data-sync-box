@@ -86,16 +86,16 @@ public class UserLogin {
     // Test the login and last login update without login
     public static void main(String[] args) {
         // Update last login without password
-        updateLastLoginWithoutLogin("admin@example1.com");
+        updateLastLoginWithoutLogin("josepha@example.com");
 
         // Optional: fetch user details to verify
-        User user = getUserDetails("admin@example1.com");
+        User user = getUserDetails("josepha@example.com");
         if (user != null) {
             System.out.println("User Info after last login update: " + user);
         }
 // here is for login to check login
 
-    boolean login =     loginUser("admin@example1.com","admin123");
+    boolean login =     loginUser("josepha@example.com","admin123");
 
         if (login){
             System.out.println("Login success full ");
