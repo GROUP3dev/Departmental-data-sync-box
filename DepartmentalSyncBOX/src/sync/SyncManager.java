@@ -20,7 +20,11 @@ public class SyncManager {
         File destDir = new File(destinationFolder);
 
         if (!srcDir.exists()) {
-            System.out.println("Source directory does not exist!");
+            if (srcDir.mkdirs()) {
+                System.out.println("Source directory was missing; created " + srcDir.getAbsolutePath() + " so future syncs can run.");
+            } else {
+                System.err.println("Failed to create source directory at " + srcDir.getAbsolutePath() + ". Please ensure the path is writable.");
+            }
             return;
         }
 
