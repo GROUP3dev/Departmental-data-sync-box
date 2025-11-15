@@ -20,7 +20,11 @@ public class SyncManager {
         File destDir = new File(destinationFolder);
 
         if (!srcDir.exists()) {
-            System.out.println("Source directory does not exist!");
+            if (srcDir.mkdirs()) {
+                System.out.println("Source directory was missing; created " + srcDir.getAbsolutePath() + " so future syncs can run.");
+            } else {
+                System.err.println("Failed to create source directory at " + srcDir.getAbsolutePath() + ". Please ensure the path is writable.");
+            }
             return;
         }
 
@@ -44,5 +48,14 @@ public class SyncManager {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void main(String[] args) {
+        String source = args.length > 0 ? args[0] : "data/source";
+        String destination = args.length > 1 ? args[1] : "data/destination";
+
+        System.out.println("Starting SyncManager manually with source=" + source + " destination=" + destination);
+        SyncManager manager = new SyncManager(source, destination);
+        manager.sync();
     }
 }
