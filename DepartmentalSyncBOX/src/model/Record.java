@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Record {
+public class Record{
 
     private int recordId;
     private String externalId;
