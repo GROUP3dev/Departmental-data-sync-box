@@ -45,4 +45,13 @@ public class SyncManager {
             }
         }
     }
+
+    public static void main(String[] args) {
+        String source = args.length > 0 ? args[0] : "data/source";
+        String destination = args.length > 1 ? args[1] : "data/destination";
+
+        System.out.println("Starting SyncManager manually with source=" + source + " destination=" + destination);
+        SyncManager manager = new SyncManager(source, destination);
+        manager.sync();
+    }
 }
