@@ -3,7 +3,7 @@ package model;
 import db.DBConnection;
 import java.sql.*;
 
-public class GgitRecord {
+public class Record {
 
     private int recordId;
     private String externalId;
@@ -18,10 +18,10 @@ public class GgitRecord {
     private Integer rowVersion;
     private boolean isDeleted;
 
-    // Default constructor
+    // Default constructor (Corrected to use Record)
     public Record() {}
 
-    // Full constructor
+    // Full constructor (Corrected to use Record)
     public Record(int recordId, String externalId, String title, String payload,
                   int ownerDepartmentId, String status, int createdBy,
                   Timestamp createdAt, Integer lastUpdatedBy, Timestamp lastUpdatedAt,
@@ -79,7 +79,7 @@ public class GgitRecord {
 
     @Override
     public String toString() {
-        return "Record{" +
+        return "Record{" + // Corrected to use "Record" for the class name
                 "recordId=" + recordId +
                 ", externalId='" + externalId + '\'' +
                 ", title='" + title + '\'' +
@@ -169,7 +169,7 @@ public class GgitRecord {
 
     // ------------------ Testing ------------------
     public static void main(String[] args) {
-        // Create sample record
+        // Create sample record (Corrected to use Record)
         Record r = new Record();
         r.setExternalId("EXT001");
         r.setTitle("Sample Record");
