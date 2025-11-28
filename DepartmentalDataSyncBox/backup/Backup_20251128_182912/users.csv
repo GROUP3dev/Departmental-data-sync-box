@@ -1,0 +1,16 @@
+ID,Username,RoleID,DeptID,Email,Active
+1,ebedi,1,1,ebedimeleck@gmail.com,true
+3,kalisa,4,1,kalisa@gmail.com,true
+5,hello,3,1,hello@gmail.com,true
+6,enock,3,1,null,true
+8,kalisa2,2,1,null,true
+9,ebe,1,1,null,true
+10,eee,1,1,ee@gmail.com,false
+11,emy,3,1,emy@gmail.com,true
+12,dept,2,1,dept@gmail.com,true
+13,reka,2,1,reka@gmail.com,true
+16,kalisa25,1,1,null,true
+17,edison,3,1,edison@gmail.com,true
+19,edison2,2,1,edison2@gmail.com,true
+20,meleck,3,1,meleck@gmail.com,true
+21,gerege,4,1,gerege@gmail.com,true

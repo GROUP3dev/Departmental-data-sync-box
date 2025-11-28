@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="DepartmentalDataSyncBox:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/DepartmentalDataSyncBox_jar</output-path>
+    <root id="archive" name="DepartmentalDataSyncBox.jar">
+      <element id="module-output" name="DepartmentalDataSyncBox" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/mysql-connector-j-9.5.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
